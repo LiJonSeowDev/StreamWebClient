@@ -1,4 +1,6 @@
 import React from 'react';
+import GAuth from '../GoogleOAuth/GoogleAuth';
+
 import {Link} from 'react-router-dom';
 
 const HeaderBanner = () => {
@@ -9,6 +11,7 @@ const HeaderBanner = () => {
                 <Link to="/" className="item">
                     All Streams
                 </Link>
+                <GAuth />
             </div>
         </div>
     )

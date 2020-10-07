@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux';
 
-// Import other reducers here
+import authReducer from './authReducer';
 
 export default combineReducers(
-    { replaceMe : () => 'abcd'   }
+    {googAuth : authReducer}
 )

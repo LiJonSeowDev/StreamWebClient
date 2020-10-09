@@ -1,12 +1,19 @@
 import React from 'react';
-import { Field , reduxForm, InjectedFormProps } from 'redux-form';
-import { Link } from 'react-router-dom';
+import { Field , reduxForm, InjectedFormProps  } from 'redux-form';
+import { connect , InferableComponentEnhancerWithProps} from 'react-redux';
+import { createStream } from '../../Actions';
+import { create } from 'domain';
 
-
-class StreamCreate extends React.Component<InjectedFormProps<{title : string ,description : string}, {}, string>>{
+//class StreamCreate extends React.Component<Readonly<InferableComponentEnhancerWithProps<{ createStream : Function }, {}> & InjectedFormProps<{ props: Props; }, {}, any>>& Readonly< any >> {
+interface Props { };
+class StreamCreate extends React.Component<InjectedFormProps<{ props: Props; }, {}, any>& Readonly< any >> {
     // componentDidMount(){
     //     console.log(this.props)
     // }
+    
+    componentDidMount(){
+        console.log(this);
+    }
 
     renderError({error, touched} : {error : string , touched : boolean}){
         if(touched && error){
@@ -36,7 +43,10 @@ class StreamCreate extends React.Component<InjectedFormProps<{title : string ,de
         )
     }
 
-    onSubmit( formFieldValues :any ){
+    onSubmit = ( formFieldValues :any ) => { 
+        //createStream(formFieldValues)(null);
+        this.props.createStream( formFieldValues );
+        console.log(this.props.createStream);
         console.log(formFieldValues);
     }
 
@@ -54,19 +64,25 @@ class StreamCreate extends React.Component<InjectedFormProps<{title : string ,de
 interface FormErrors<TValue> {
     [key: string]: TValue;
 }
-const validateForm = ( {title, description} : {title : string ,description : string} ) => {
+const validateForm = ( props : any ) => {
+    console.log(createStream , props.title, props.description);
     const errors : FormErrors<string> = {} ;
-    if(!title){
+    if(!props.title){
         errors.title = 'You must enter a title!';
     }
-    if(!description){
+    if(!props.description){
         errors.description = "You must enter a description!";
     }
     return errors;
 
 }
 
-export default reduxForm({
+const wrappedForm = reduxForm({
     form : 'streamCreate',
     validate : validateForm
-})(StreamCreate);
+})(StreamCreate)
+
+const connector = connect( null , {createStream});
+type PropsFromRedux = typeof connector; 
+
+export default connect(null, {createStream} )(wrappedForm);

@@ -13,6 +13,7 @@ interface StreamDict<TValue> {
 
 export default (state : StreamDict<Stream> = {} , action : any) => {
     switch(action.type) {
+        
         case 'FETCH_STREAM' :
             return ({...state, [action.payload.id] : action.payload});
 

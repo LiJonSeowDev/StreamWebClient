@@ -3,12 +3,12 @@ import { reducer as formReducer } from 'redux-form';
 
 
 import authReducer from './authReducer';
-import streamReducer from './streamReducer';
+import streamsReducer from './streamsReducer';
 
 export default combineReducers(
     {
         googAuth : authReducer,
         form : formReducer,
-        stream : streamReducer
+        streams : streamsReducer
     }
 )

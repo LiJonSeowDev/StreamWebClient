@@ -7,9 +7,9 @@ const INITIAL_STATE = {
 export default ( state = INITIAL_STATE , action : any)=> {
     switch(action.type){
         case 'GOOG_SIGN_IN':
-            return {...state, isSignedIn : true , userID: action.payload}
+            return {...state, isSignedIn : true, userID: action.payload}
         case 'GOOG_SIGN_OUT':
-            return {...state, isSignedIn : false}
+            return {...state, isSignedIn : false, userID : null}
         default :
             return state;
         

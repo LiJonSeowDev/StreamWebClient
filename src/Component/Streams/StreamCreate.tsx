@@ -2,7 +2,7 @@ import React from 'react';
 import { Field , reduxForm, InjectedFormProps  } from 'redux-form';
 import { connect , InferableComponentEnhancerWithProps} from 'react-redux';
 import { createStream } from '../../Actions';
-import { create } from 'domain';
+
 
 //class StreamCreate extends React.Component<Readonly<InferableComponentEnhancerWithProps<{ createStream : Function }, {}> & InjectedFormProps<{ props: Props; }, {}, any>>& Readonly< any >> {
 interface Props { };
@@ -12,7 +12,7 @@ class StreamCreate extends React.Component<InjectedFormProps<{ props: Props; }, 
     // }
     
     componentDidMount(){
-        console.log(this);
+        //console.log(this);
     }
 
     renderError({error, touched} : {error : string , touched : boolean}){
@@ -32,7 +32,7 @@ class StreamCreate extends React.Component<InjectedFormProps<{ props: Props; }, 
         // by default the function will be called by ReduxForms with 1 parameter containing object { input , meta } 
         // They have already defined onChange(){} for you to the redux state. so you just need to deserialize it here like so. i.e. <input onChange={input.onChange} on... ... ... >
 
-        console.log(meta);
+        //console.log(meta);
         return (
             <div className={`field ${meta.error && meta.touched ? 'error'  : '' }`}> 
                 <label> {label}  </label>
@@ -65,7 +65,6 @@ interface FormErrors<TValue> {
     [key: string]: TValue;
 }
 const validateForm = ( props : any ) => {
-    console.log(createStream , props.title, props.description);
     const errors : FormErrors<string> = {} ;
     if(!props.title){
         errors.title = 'You must enter a title!';

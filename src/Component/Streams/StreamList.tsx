@@ -24,6 +24,7 @@ class StreamList extends React.Component<Readonly< any >>{
     }
 
     renderStreamControls( stream: Stream ){
+        console.log(stream.userID , this.props.currentUserID )
         if( stream.userID === this.props.currentUserID ){
             return (
                 <div className="right floated content">

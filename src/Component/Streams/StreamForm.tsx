@@ -1,7 +1,9 @@
 import React from 'react';
 import { Field , reduxForm, InjectedFormProps  } from 'redux-form';
 
-class StreamForm extends React.Component<InjectedFormProps<{ props: Props; }, {}, any>& Readonly< any >> {
+
+
+class StreamForm extends React.Component< Readonly<{onSubmitAction : Function} & any> & InjectedFormProps<{ props : {onSubmitAction : Function & any}} , {}, any>> {
     // componentDidMount(){
     //     console.log(this.props)
     // }

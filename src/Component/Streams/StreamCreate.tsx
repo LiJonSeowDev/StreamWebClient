@@ -18,7 +18,6 @@ class StreamCreate extends React.Component<Readonly< any >> {
     onSubmit = ( formFieldValues :any ) => { 
         //createStream(formFieldValues)(null);
         this.props.createStream( formFieldValues );
-        console.log(this.props.createStream);
         console.log(formFieldValues);
     }
 
@@ -27,8 +26,7 @@ class StreamCreate extends React.Component<Readonly< any >> {
             <div>
                 <h3> Create a Stream </h3>
                 <StreamForm onSubmit={this.onSubmit}></StreamForm>
-            </div>
-            
+            </div>   
         )
     }
 }

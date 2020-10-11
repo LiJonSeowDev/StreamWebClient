@@ -8,3 +8,9 @@ type Stream = {
 interface StreamDict<TValue> {
     [key: string]: TValue;
 }
+
+interface FormErrors<TValue> {
+    [key: string]: TValue;
+}
+
+interface Props { };

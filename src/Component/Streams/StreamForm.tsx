@@ -1,11 +1,6 @@
 import React from 'react';
 import { Field , reduxForm, InjectedFormProps  } from 'redux-form';
-import { connect , InferableComponentEnhancerWithProps} from 'react-redux';
-import { createStream } from '../../Actions';
 
-
-//class StreamForm extends React.Component<Readonly<InferableComponentEnhancerWithProps<{ createStream : Function }, {}> & InjectedFormProps<{ props: Props; }, {}, any>>& Readonly< any >> {
-interface Props { };
 class StreamForm extends React.Component<InjectedFormProps<{ props: Props; }, {}, any>& Readonly< any >> {
     // componentDidMount(){
     //     console.log(this.props)
@@ -43,16 +38,17 @@ class StreamForm extends React.Component<InjectedFormProps<{ props: Props; }, {}
         )
     }
 
-    onSubmit = ( formFieldValues :any ) => { 
-        //createStream(formFieldValues)(null);
-        this.props.createStream( formFieldValues );
-        console.log(this.props.createStream);
-        console.log(formFieldValues);
-    }
+
+    // onSubmit = ( formFieldValues :any ) => { 
+    //     //createStream(formFieldValues)(null);
+    //     this.props.createStream( formFieldValues );
+    //     console.log(this.props.createStream);
+    //     console.log(formFieldValues);
+    // }
 
     render(){
         return(
-            <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error">
+            <form onSubmit={this.props.handleSubmit(this.props.onSubmit)} className="ui form error">
                 <Field  name="title" component={ this.renderInput }  label="Enter Title" />
                 <Field  name="description" component={ this.renderInput }  label="Enter Description" />       
                 <button className="ui button primary"> Submit </button>         
@@ -61,9 +57,7 @@ class StreamForm extends React.Component<InjectedFormProps<{ props: Props; }, {}
     }
 }
 
-interface FormErrors<TValue> {
-    [key: string]: TValue;
-}
+
 const validateForm = ( props : any ) => {
     const errors : FormErrors<string> = {} ;
     if(!props.title){
@@ -81,7 +75,5 @@ const wrappedForm = reduxForm({
     validate : validateForm
 })(StreamForm)
 
-const connector = connect( null , {createStream});
-type PropsFromRedux = typeof connector; 
 
-export default connect(null, {createStream} )(wrappedForm);
+export default wrappedForm;
